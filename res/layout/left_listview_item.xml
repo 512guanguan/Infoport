@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content" >
+
+	<LinearLayout
+		android:id="@+id/linearlayout"
+		android:layout_width="fill_parent"
+		android:layout_height="50dp"
+		android:layout_margin="5dp"
+		android:orientation="horizontal" >
+
+		<ImageView
+			android:id="@+id/iv_item_head"
+			android:layout_width="50dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_marginLeft="20dp"
+			android:src="@drawable/left_head" />
+
+		<TextView
+			android:id="@+id/tv_item_name"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_vertical"
+			android:layout_marginLeft="15dp"
+			android:text="热门帖子"
+			android:textSize="23sp" />
+	</LinearLayout>
+
+	<ImageView
+		android:id="@+id/iv_line"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"
+		android:layout_below="@+id/linearlayout"
+		android:layout_marginTop="3dp"
+		android:src="@drawable/left_list_line" />
+
+</RelativeLayout>

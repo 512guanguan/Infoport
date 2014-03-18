@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" >
+
+	<RelativeLayout
+		android:id="@+id/relativeLayout1"
+		android:layout_width="match_parent"
+		android:layout_height="120dp"
+		android:layout_alignParentTop="true"
+		android:background="@drawable/left_head_bg" >
+
+		<ImageView
+			android:id="@+id/iv_head"
+			android:layout_width="80dp"
+			android:layout_height="100dp"
+			android:layout_alignParentLeft="true"
+			android:layout_marginLeft="30dp"
+			android:layout_marginTop="10dp"
+			android:src="@drawable/left_head" />
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentBottom="true"
+			android:layout_marginBottom="40dp"
+			android:layout_toRightOf="@+id/iv_head"
+			android:padding="10dp"
+			android:text="赖阿波"
+			android:textSize="25sp" />
+	</RelativeLayout>
+
+	<LinearLayout
+		android:id="@+id/linearLayout1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/relativeLayout1"
+		android:layout_centerHorizontal="true"
+		android:layout_marginTop="1dp"
+		android:background="@drawable/left_atcomment_bg" >
+
+		<RadioButton
+			android:layout_width="wrap_content"
+			android:layout_height="50dp"
+			android:layout_gravity="left"
+			android:layout_marginRight="1dp"
+			android:layout_weight="1.0"
+			android:background="#E8F2FE"
+			android:button="@null"
+			android:drawableLeft="@drawable/left_at"
+			android:paddingLeft="10dp"
+			android:text=" 我的    "
+			android:textScaleX="1.2"
+			android:textSize="20sp" />
+
+		<RadioButton
+			android:layout_width="wrap_content"
+			android:layout_height="50dp"
+			android:layout_gravity="right"
+			android:layout_marginLeft="1dp"
+			android:layout_weight="1.0"
+			android:background="#E8F2FE"
+			android:button="@null"
+			android:drawableLeft="@drawable/left_comment"
+			android:paddingLeft="10dp"
+			android:text=" 评论    "
+			android:textScaleX="1.2"
+			android:textSize="20sp" />
+	</LinearLayout>
+
+	<ListView
+		android:id="@+id/left_listView"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_above="@+id/linear_bottom"
+		android:layout_alignParentLeft="true"
+		android:layout_below="@+id/linearLayout1"
+		android:layout_marginTop="10dp" >
+	</ListView>
+
+	<LinearLayout
+		android:id="@+id/linear_bottom"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:layout_alignParentBottom="true"
+		android:orientation="horizontal" >
+
+		<Button
+			android:layout_width="0dip"
+			android:layout_height="match_parent"
+			android:layout_weight="1.0"
+			android:background="#00000000"
+			android:text="反馈" />
+
+		<Button
+			android:layout_width="0dip"
+			android:layout_height="match_parent"
+			android:layout_weight="1.0"
+			android:background="#00000000"
+			android:text="关于" />
+	</LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string-array name="action_list">
+		<item>"华工"</item>
+		<item>"华师"</item>
+		<item>"中大"</item>
+		<item>"暨大"</item>
+	</string-array>
+
+</resources>

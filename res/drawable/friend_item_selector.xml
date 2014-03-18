@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/friend_main_item_bg" android:state_pressed="false"></item>
+	<item android:state_pressed="true"><shape>
+			<gradient android:angle="270" android:endColor="#E1E1E1" android:startColor="#E1E1E1" />
+
+			<size android:height="220dp" android:width="220dp" />
+
+			<corners android:radius="18dp" />
+		</shape></item>
+
+</selector>

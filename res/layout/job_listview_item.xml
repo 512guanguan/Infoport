@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginLeft="20dp"
+	android:layout_marginRight="20dp"
+	android:layout_marginTop="2dp"
+	android:background="@drawable/job_main_item_selector" >
+
+	<TextView
+		android:id="@+id/job_item_name"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="3dp"
+		android:gravity="center_horizontal"
+		android:maxLines="2"
+		android:paddingLeft="5sp"
+		android:paddingRight="5sp"
+		android:text="标题"
+		android:textSize="23sp" />
+
+	<TextView
+		android:id="@+id/job_item_content"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@+id/job_item_name"
+		android:maxLines="3"
+		android:minHeight="70dp"
+		android:padding="5sp"
+		android:text="这个是主要内容"
+		android:textSize="17sp" />
+
+	<RelativeLayout
+		android:id="@+id/linear"
+		android:layout_width="match_parent"
+		android:layout_height="30dp"
+		android:layout_below="@+id/job_item_content"
+		android:layout_marginBottom="10dp"
+		android:layout_marginLeft="5sp"
+		android:layout_marginRight="5sp" >
+
+		<ImageView
+			android:id="@+id/iv_line"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:src="@drawable/line" />
+
+		<TextView
+			android:id="@+id/job_item_time"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_below="@+id/iv_line"
+			android:layout_gravity="center_vertical"
+			android:layout_marginLeft="5dp"
+			android:gravity="center_vertical"
+			android:maxLines="1"
+			android:text="2013-11-10"
+			android:textSize="14sp" />
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_alignParentRight="true"
+			android:src="@drawable/job_item_go" />
+	</RelativeLayout>
+
+</RelativeLayout>

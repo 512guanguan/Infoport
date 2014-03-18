@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:background="@drawable/activity_item_selector"
+	android:orientation="vertical" >
+
+	<TextView
+		android:id="@+id/activity_item_activityname"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="7dp"
+		android:layout_marginRight="7dp"
+		android:layout_marginTop="4dp"
+		android:ellipsize="end"
+		android:gravity="center_horizontal"
+		android:paddingLeft="6sp"
+		android:paddingRight="6sp"
+		android:singleLine="true"
+		android:text="活动标题阿斯蒂芬阿法斯蒂阿斯蒂芬阿法第三方阿凡达阿道夫"
+		android:textSize="23sp"
+		android:textStyle="bold" />
+
+	<LinearLayout
+		android:id="@+id/activity_item_time"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal" >
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingLeft="3dp"
+			android:paddingRight="3dp"
+			android:text="时间:"
+			android:textSize="17sp"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/activity_item_activitytime"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:maxLines="1"
+			android:paddingLeft="3dp"
+			android:paddingRight="3dp"
+			android:text="activity_time"
+			android:textSize="17sp" />
+	</LinearLayout>
+
+	<LinearLayout
+		android:id="@+id/activity_item_address"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal" >
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:paddingLeft="3dp"
+			android:paddingRight="3dp"
+			android:text="地点:"
+			android:textSize="17sp"
+			android:textStyle="bold" />
+
+		<TextView
+			android:id="@+id/activity_item_activityaddr"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:maxLines="1"
+			android:paddingLeft="3dp"
+			android:paddingRight="3dp"
+			android:text="activity_address"
+			android:textSize="17sp" />
+	</LinearLayout>
+
+	<RelativeLayout
+		android:id="@+id/activity_item_author"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="5dp"
+		android:layout_marginRight="5dp" >
+
+		<ImageView
+			android:id="@+id/iv_line1"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:src="@drawable/activity_line" />
+
+		<LinearLayout
+			android:id="@+id/activity_item_author"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_below="@+id/iv_line1"
+			android:layout_marginLeft="5dp"
+			android:layout_marginRight="5dp"
+			android:orientation="horizontal"
+			android:paddingLeft="1sp" >
+
+			<TextView
+				android:id="@+id/activity_item_authorname"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:maxLines="1"
+				android:text="activity_authorname"
+				android:textSize="17sp" />
+
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:text="发布于"
+				android:textSize="19sp" />
+
+			<TextView
+				android:id="@+id/activity_item_authortime"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:gravity="center_vertical"
+				android:maxLines="1"
+				android:text="activity_authortime"
+				android:textSize="17sp" />
+		</LinearLayout>
+
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:gravity="center_vertical"
+			android:src="@drawable/job_item_go" />
+	</RelativeLayout>
+
+</LinearLayout>

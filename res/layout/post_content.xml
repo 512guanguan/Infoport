@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" >
+
+	<WebView
+		android:id="@+id/webview"
+		android:layout_width="fill_parent"
+		android:layout_height="match_parent"
+		android:layout_above="@+id/webview_bottom"
+		android:background="@android:color/transparent" />
+
+	<RelativeLayout
+		android:id="@+id/webview_bottom"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true" >
+
+		<Button
+			android:id="@+id/webview_submit"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"
+			android:layout_marginBottom="5dp"
+			android:layout_marginLeft="10dp"
+			android:layout_marginRight="10dp"
+			android:layout_marginTop="5dp"
+			android:gravity="center_vertical"
+			android:paddingLeft="20dp"
+			android:paddingRight="20dp"
+			android:text="提交" />
+
+		<EditText
+			android:id="@+id/webview_edit"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"
+			android:layout_marginBottom="5dp"
+			android:layout_marginTop="5dp"
+			android:layout_toLeftOf="@+id/webview_submit"
+			android:gravity="top"
+			android:hint="点击输入评论"
+			android:maxLines="4" />
+	</RelativeLayout>
+
+</RelativeLayout>
