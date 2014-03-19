@@ -1,3 +1,0 @@
-Infoport
-========
-Hello world!
