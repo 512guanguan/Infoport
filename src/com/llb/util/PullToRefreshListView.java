@@ -468,7 +468,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 						tv_tail.setText(R.string.ptr_refreshing);// 正在刷新
 						pb_tail.setVisibility(View.VISIBLE);
 						state2 = State.REFRESHING;// 释放可以加载更多了
-						// Log.i("llb","刷新中"+state2);
+						Log.i("llb","刷新中"+state2);
 					} else {
 						// Log.i("llb","放弃刷新了"+state2);
 						tv_tail.setText(R.string.pull_to_refresh);// 上拉刷新
@@ -573,8 +573,7 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 		}
 	}
 	@Override
-	public void onScroll(AbsListView view, int firstVisibleItem,
-			int visibleItemCount, int totalItemCount) {//第一个可见的索引（0） 可见item数目   总item数目
+	public void onScroll(AbsListView view, int firstVisibleItem,int visibleItemCount, int totalItemCount) {//第一个可见的索引（0） 可见item数目   总item数目
 	//	Log.i("llb","onScroll:"+firstVisibleItem+" "+visibleItemCount+" "+totalItemCount+" "+getLastVisiblePosition());
 		if(getLastVisiblePosition()>totalItemCount-2&&totalItemCount>visibleItemCount){//快到底部了&&至少有一屏
 			location=1;//表示这是底部上拉刷新

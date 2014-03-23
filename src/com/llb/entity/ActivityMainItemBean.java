@@ -64,7 +64,7 @@ public class ActivityMainItemBean {
 		}
 		@Override
 		public String toString() {
-			return "ActivityMainItemBean [activity_item_authorname=" + activity_item_authorname
+			return "ActivityMainItemBean [postId="+postId+"activity_item_authorname=" + activity_item_authorname
 					+ "activity_item_authortime"+activity_item_authortime+",  activity_item_activityname=" + activity_item_activityname + ", activity_item_activitytime="
 					+ activity_item_activitytime + ",activity_item_activityaddr="+ activity_item_activityaddr +"]";
 		}

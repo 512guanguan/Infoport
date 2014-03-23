@@ -2,10 +2,13 @@ package com.llb.fragment;
 
 import java.util.ArrayList;
 
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,10 +20,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import com.llb.activity.PostContentActivity;
 import com.llb.activity.R;
 import com.llb.adapter.ActivityMainAdapter;
+import com.llb.app.MyApp;
 import com.llb.entity.ActivityMainItemBean;
 import com.llb.net.LoadData;
+import com.llb.util.JsonDecodeUtil;
 import com.llb.util.PullToRefreshListView;
 import com.llb.util.PullToRefreshListView.OnRefreshListener;
+
 
 
 
@@ -29,12 +35,15 @@ public class ActivityFragment extends Fragment implements OnItemClickListener,On
 	private PullToRefreshListView listView=null;
 	private View view;//缓存页面
 	private ArrayList<ActivityMainItemBean> list=null;//用来存储当前显示的信息
-	private ArrayList<ActivityMainItemBean> newData=null;//刷新得到的新数据
+	private ArrayList<ActivityMainItemBean> freshData=new ArrayList<ActivityMainItemBean>();//下拉刷新得到的新数据
+	private ArrayList<ActivityMainItemBean> oldData=new ArrayList<ActivityMainItemBean>();//上拉刷新得到的新数据
 	private ActivityMainAdapter adapter;
 	//网络请求
 	private LoadData loadData;
 	public static  Handler handler=null;
 	private String baseURL="http://192.168.1.109/collegepy/index.php";
+	private String url=baseURL+"/Home/PostList/postlist";//请求刷新的接口地址
+	private int pageSize=1;//每页显示条数
 	@Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -44,25 +53,25 @@ public class ActivityFragment extends Fragment implements OnItemClickListener,On
         list=new ArrayList<ActivityMainItemBean>();
         //网络请求类
         loadData=new LoadData(this.getActivity());
-        handler=new Handler(){
-        	@Override
-        	public void handleMessage(Message msg) {
-        		super.handleMessage(msg);
-        		//Activity跳转到详情页
-        		switch (msg.what) {
-				case 101://请求到列表刷新数据后响应
-					Log.i("zgr","msg==101");
-        			newData=loadData.activityMainItemBeans;//把得到的数据传进来
-        			loadData.activityMainItemBeans=null;//清空数据
-        			refreshListView(newData);//刷新页面
-					break;
-				case 10100://出错了
-					Log.i("zgr","msg==10100");
-					refreshListView(new ArrayList<ActivityMainItemBean>());//刷新页面
-					break;
-				}
-        	}
-        };
+//        handler=new Handler(){
+//        	@Override
+//        	public void handleMessage(Message msg) {
+//        		super.handleMessage(msg);
+//        		//Activity跳转到详情页
+//        		switch (msg.what) {
+//				case 101://请求到列表刷新数据后响应
+//					Log.i("zgr","msg==101");
+//					freshData=loadData.activityMainItemBeans;//把得到的数据传进来
+//        			loadData.activityMainItemBeans=null;//清空数据
+//        			refreshListView(freshData);//刷新页面
+//					break;
+//				case 10100://出错了
+//					Log.i("zgr","msg==10100");
+//					refreshListView(new ArrayList<ActivityMainItemBean>());//刷新页面
+//					break;
+//				}
+//        	}
+//        };
     }
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -86,9 +95,9 @@ public class ActivityFragment extends Fragment implements OnItemClickListener,On
 		return view;
 	}
 	private void initArrayList() {
-		list.add(new ActivityMainItemBean("2","zhuang","2013-11-10,17:00" ,"第十六届世纪木棉系列讲座","2013-11-20,19:00~21:00", "广州市华南理工大学34号楼102"));
-		list.add(new ActivityMainItemBean("1","zhuang1","2013-11-10,17:00", "2013年中国移动广东公司“领先之星”职业发展俱乐部招新","2013-11-20, 19:00~20:30", "广州市华南理工大学34号楼102"));
-		list.add(new ActivityMainItemBean("2","zhuang2", "2013-11-10,17:00","研究生科技文化节专题系列讲座之“信息漫谈”","2013-11-20", "广州市华南理工大学逸夫科学馆107"));
+		list.add(new ActivityMainItemBean("3","zhuang","2013-11-10,17:00" ,"第十六届世纪木棉系列讲座","2013-11-20,19:00~21:00", "广州市华南理工大学34号楼102"));
+		list.add(new ActivityMainItemBean("2","zhuang1","2013-11-10,17:00", "2013年中国移动广东公司“领先之星”职业发展俱乐部招新","2013-11-20, 19:00~20:30", "广州市华南理工大学34号楼102"));
+		list.add(new ActivityMainItemBean("1","zhuang2", "2013-11-10,17:00","研究生科技文化节专题系列讲座之“信息漫谈”","2013-11-20", "广州市华南理工大学逸夫科学馆107"));
 		
 	}
 	/**
@@ -121,44 +130,108 @@ public class ActivityFragment extends Fragment implements OnItemClickListener,On
 	public void onRefresh() {
 		//下拉刷新在这里请求网络
 		Log.i("llb", "顶部下拉请求网络");
-		String url=baseURL+"/Home/PostList/postlist";//请求接口地址
-		loadData.getPostList(url,1,100);//请求第一页数据
+//		loadData.getPostList(url,1,100);//请求第一页数据
+		String page=list.get(0).getpostId();
+		Log.i("zgr",list.get(0).toString());
+		ArrayList<BasicNameValuePair> params=getBasicNameValuePairs(url, page, 1);
+		new ActivityAsynctask().execute(params.get(0),params.get(1),params.get(2));
 	}
 	@Override
 	public void onLoadMore() {
 		//在这里请求网络
 		Log.i("llb", "底部上拉请求网络");
-		refreshListView(new ArrayList<ActivityMainItemBean>());//刷新数据
+//		refreshListView(new ArrayList<ActivityMainItemBean>());//刷新数据
+		String page=list.get(list.size()-1).getpostId();
+		Log.i("zgr",list.get(list.size()-1).toString());
+		ArrayList<BasicNameValuePair> params=getBasicNameValuePairs(url, page, 2);
+		new ActivityAsynctask().execute(params.get(0),params.get(1),params.get(2));
+		
 	}
-	private void refreshListView(ArrayList<ActivityMainItemBean> newData){
-//		for(int index=0;index<newData.size();index++){
-//			list.
-//			list.add(newData.get(index));//逐个添加新数据
-//		}
-		list.addAll(0, newData);
-//		list.add(new ActivityMainItemBean("2","zhuang2", "2013-11-10,17:00","研究生科技文化节专题系列讲座之“信息漫谈”","2013-11-20", "广州市华南理工大学逸夫科学馆107"));
+	private void refreshListView(ArrayList<ActivityMainItemBean> newData,int code){
+		switch (code) {
+		case 100://下拉刷新，把数据挂在最前面
+			list.addAll(0, newData);
+			break;
+		case 001://上拉刷新，把数据挂在最后
+			list.addAll(list.size(), newData);
+			break;
+		}
 		adapter.notifyDataSetChanged();
 		listView.onRefreshComplete();
 	}
-	
-	@Override
-    public void onPause()
-    {
-        // TODO Auto-generated method stub
-        super.onPause();
-        Log.i("slide","ActivityFragment--onPause");
-    }
-	@Override
-	public void onStop() {
-		// TODO Auto-generated method stub
-		super.onStop();
-		Log.i("slide","ActivityFragment--onStop");
+	/**
+	 * AsyncTask的代码简洁，但是相较于Handler+Thread的方式，更耗资源，灵活度稍差。一般在数据量不大的情况下使用
+	 * 这个程序中，所有关于列表刷新的部分都采用AsyncTask，而内容详情相关的操作采用Handler+Thread
+	 * @author llb
+	 *
+	 */
+	class ActivityAsynctask extends AsyncTask<BasicNameValuePair, Void, String>{
+		public ArrayList<ActivityMainItemBean> activityMainItemBeans;//用来返回取得的列表数据
+		@Override
+		protected String doInBackground(BasicNameValuePair... params) {
+			//postByHttpClient(String url,NameValuePair...pairs)
+			String response=MyApp.getByHttpClient(params[0].getValue(),params[1],params[2]);//get方法请求数据
+			return response;
+		}
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			int code=0;//返回的操作功能号
+			if(null!=result){
+				try {
+					JSONObject jsonObject=new JSONObject(result);//先把返回的数据转成一个json对象，方便解析
+					JsonDecodeUtil jsonDecodeUtil=new JsonDecodeUtil();
+					code=Integer.parseInt(jsonObject.getString("code"));
+					switch (code) {
+					case 100://下拉活动列表信息请求成功
+						activityMainItemBeans=jsonDecodeUtil.decodeListJson(jsonObject);//解析里面的result数据
+						Log.i("zgr","onPostExecute="+result);
+						freshData=activityMainItemBeans;//把得到的数据传进来
+						break;
+					case 001://上拉活动列表信息请求成功
+						activityMainItemBeans=jsonDecodeUtil.decodeListJson(jsonObject);//解析里面的result数据
+						Log.i("zgr","onPostExecute="+result);
+						freshData=activityMainItemBeans;//把得到的数据传进来
+						break;
+					case 10101://表明没有新数据
+//						Toast.makeText(ActivityFragment, "没有新数据", 0).show();//???????
+						freshData.clear();//清空，表面没有新数据
+						break;
+					}
+	    			refreshListView(freshData,code);//刷新页面
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else {
+				Log.i("zgr","应该是网络之类的问题，待处理");
+				refreshListView(freshData,code);//刷新页面
+				//应该是网络异常之类的，不然至少有功能好，不会为空
+			}
+		}
 	}
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		super.onDestroy();
-		Log.i("slide","ActivityFragment--onDestroy");
+	/**
+	 * 生成httpclient网络请求所需要的参数信息
+	 * @param url请求url
+	 * @param page 请求的页码
+	 * @param tag 请求标记： 1-下拉刷新  2-上拉刷新
+	 * @return ArrayList<BasicNameValuePair>
+	 */
+	private ArrayList<BasicNameValuePair> getBasicNameValuePairs(String url,String page,int tag){
+		ArrayList<BasicNameValuePair> pairs;
+		pairs=new ArrayList<BasicNameValuePair>();
+		switch (tag) {
+		case 1://下拉请求列表信息
+			pairs.add(new BasicNameValuePair("url", url));
+			pairs.add(new BasicNameValuePair("page", page));
+			pairs.add(new BasicNameValuePair("code", "100"));//id=100表示这个请求是请求Activity下拉列表数据
+			break;
+		case 2://上拉请求列表信息
+			pairs.add(new BasicNameValuePair("url", url));
+			pairs.add(new BasicNameValuePair("page", page));
+			pairs.add(new BasicNameValuePair("code", "001"));//id=001表示这个请求是请求Activity上拉刷新列表数据
+			break;
+		}
+		return pairs;
 	}
 	
 }
