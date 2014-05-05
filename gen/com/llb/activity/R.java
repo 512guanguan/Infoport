@@ -584,135 +584,140 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int activity_line=0x7f020003;
         public static final int activity_main_item_bg=0x7f020004;
         public static final int arrow_bottom=0x7f020005;
-        public static final int friend_author_image=0x7f020006;
-        public static final int friend_item_selector=0x7f020007;
-        public static final int friend_main_item_bg=0x7f020008;
-        public static final int ic_launcher=0x7f020009;
-        public static final int job_item_go=0x7f02000a;
-        public static final int job_main_item_bg=0x7f02000b;
-        public static final int job_main_item_pressed_bg=0x7f02000c;
-        public static final int job_main_item_selector=0x7f02000d;
-        public static final int left_at=0x7f02000e;
-        public static final int left_atcomment_bg=0x7f02000f;
-        public static final int left_comment=0x7f020010;
-        public static final int left_head=0x7f020011;
-        public static final int left_head_bg=0x7f020012;
-        public static final int left_item1_hot=0x7f020013;
-        public static final int left_item2_mypage=0x7f020014;
-        public static final int left_item3_mycol=0x7f020015;
-        public static final int left_item4_setting=0x7f020016;
-        public static final int left_item5_exit=0x7f020017;
-        public static final int left_list_line=0x7f020018;
-        public static final int leftview=0x7f020019;
-        public static final int line=0x7f02001a;
-        public static final int pop_bg=0x7f02001b;
-        public static final int ptr_pulltorefresh_arrow=0x7f02001c;
-        public static final int scrollbar=0x7f02001d;
-        public static final int splash_bg=0x7f02001e;
-        public static final int tab_activity_normal=0x7f02001f;
-        public static final int tab_activity_selected=0x7f020020;
-        public static final int tab_activity_selector=0x7f020021;
-        public static final int tab_bg_normal=0x7f020022;
-        public static final int tab_bg_selected=0x7f020023;
-        public static final int tab_bg_selector=0x7f020024;
-        public static final int tab_friend_normal=0x7f020025;
-        public static final int tab_friend_selected=0x7f020026;
-        public static final int tab_friend_selector=0x7f020027;
-        public static final int tab_job_normal=0x7f020028;
-        public static final int tab_job_selected=0x7f020029;
-        public static final int tab_job_selector=0x7f02002a;
-        public static final int testimage1=0x7f02002b;
+        public static final int default_img=0x7f020006;
+        public static final int friend_author_image=0x7f020007;
+        public static final int friend_item_selector=0x7f020008;
+        public static final int friend_main_item_bg=0x7f020009;
+        public static final int ic_launcher=0x7f02000a;
+        public static final int job_item_go=0x7f02000b;
+        public static final int job_main_item_bg=0x7f02000c;
+        public static final int job_main_item_pressed_bg=0x7f02000d;
+        public static final int job_main_item_selector=0x7f02000e;
+        public static final int left_at=0x7f02000f;
+        public static final int left_atcomment_bg=0x7f020010;
+        public static final int left_comment=0x7f020011;
+        public static final int left_head=0x7f020012;
+        public static final int left_head_bg=0x7f020013;
+        public static final int left_item1_hot=0x7f020014;
+        public static final int left_item2_mypage=0x7f020015;
+        public static final int left_item3_mycol=0x7f020016;
+        public static final int left_item4_setting=0x7f020017;
+        public static final int left_item5_exit=0x7f020018;
+        public static final int left_list_line=0x7f020019;
+        public static final int leftview=0x7f02001a;
+        public static final int line=0x7f02001b;
+        public static final int pop_bg=0x7f02001c;
+        public static final int ptr_pulltorefresh_arrow=0x7f02001d;
+        public static final int scrollbar=0x7f02001e;
+        public static final int splash_bg=0x7f02001f;
+        public static final int tab_activity_normal=0x7f020020;
+        public static final int tab_activity_selected=0x7f020021;
+        public static final int tab_activity_selector=0x7f020022;
+        public static final int tab_bg_normal=0x7f020023;
+        public static final int tab_bg_selected=0x7f020024;
+        public static final int tab_bg_selector=0x7f020025;
+        public static final int tab_friend_normal=0x7f020026;
+        public static final int tab_friend_selected=0x7f020027;
+        public static final int tab_friend_selector=0x7f020028;
+        public static final int tab_job_normal=0x7f020029;
+        public static final int tab_job_selected=0x7f02002a;
+        public static final int tab_job_selector=0x7f02002b;
+        public static final int testimage1=0x7f02002c;
     }
     public static final class id {
-        public static final int a=0x7f050006;
-        public static final int action_add=0x7f050013;
-        public static final int action_list=0x7f050014;
-        public static final int activity_item_activityaddr=0x7f05000c;
-        public static final int activity_item_activityname=0x7f050008;
-        public static final int activity_item_activitytime=0x7f05000a;
-        public static final int activity_item_address=0x7f05000b;
-        public static final int activity_item_author=0x7f05000d;
-        public static final int activity_item_authorname=0x7f05000f;
-        public static final int activity_item_authortime=0x7f050010;
-        public static final int activity_item_time=0x7f050009;
-        public static final int friend_item_author=0x7f050025;
-        public static final int friend_item_content=0x7f050023;
-        public static final int friend_item_content_comment=0x7f050024;
-        public static final int friend_item_content_image1=0x7f050020;
-        public static final int friend_item_content_image2=0x7f050021;
-        public static final int friend_item_content_image3=0x7f050022;
-        public static final int friend_item_imagebest=0x7f05001d;
-        public static final int friend_item_imagehot=0x7f05001e;
-        public static final int friend_item_time=0x7f050026;
-        public static final int friend_item_title=0x7f05001f;
+        public static final int a=0x7f050008;
+        public static final int action_add=0x7f050015;
+        public static final int action_list=0x7f050016;
+        public static final int activity_item_activityaddr=0x7f05000e;
+        public static final int activity_item_activityname=0x7f05000a;
+        public static final int activity_item_activitytime=0x7f05000c;
+        public static final int activity_item_address=0x7f05000d;
+        public static final int activity_item_author=0x7f05000f;
+        public static final int activity_item_authorname=0x7f050011;
+        public static final int activity_item_authortime=0x7f050012;
+        public static final int activity_item_time=0x7f05000b;
+        public static final int friend_item_author=0x7f050027;
+        public static final int friend_item_content=0x7f050025;
+        public static final int friend_item_content_comment=0x7f050026;
+        public static final int friend_item_content_image1=0x7f050022;
+        public static final int friend_item_content_image2=0x7f050023;
+        public static final int friend_item_content_image3=0x7f050024;
+        public static final int friend_item_imagebest=0x7f05001f;
+        public static final int friend_item_imagehot=0x7f050020;
+        public static final int friend_item_time=0x7f050028;
+        public static final int friend_item_title=0x7f050021;
         public static final int fullscreen=0x7f050003;
-        public static final int head=0x7f050011;
-        public static final int iv_head=0x7f05002e;
-        public static final int iv_item_head=0x7f050033;
-        public static final int iv_left=0x7f050012;
-        public static final int iv_line=0x7f05002b;
-        public static final int iv_line1=0x7f05000e;
-        public static final int iv_tail=0x7f050041;
-        public static final int job_item_content=0x7f050029;
-        public static final int job_item_name=0x7f050028;
-        public static final int job_item_time=0x7f05002c;
+        public static final int head=0x7f050013;
+        public static final int iv_head=0x7f050030;
+        public static final int iv_item_head=0x7f050035;
+        public static final int iv_left=0x7f050014;
+        public static final int iv_line=0x7f05002d;
+        public static final int iv_line1=0x7f050010;
+        public static final int iv_tail=0x7f050043;
+        public static final int job_item_content=0x7f05002b;
+        public static final int job_item_name=0x7f05002a;
+        public static final int job_item_time=0x7f05002e;
         public static final int left=0x7f050000;
-        public static final int left_listView=0x7f050030;
-        public static final int linear=0x7f05002a;
-        public static final int linearLayout1=0x7f05002f;
-        public static final int linear_bottom=0x7f050031;
-        public static final int linearlayout=0x7f050032;
-        public static final int lv_activity=0x7f050007;
-        public static final int lv_friend=0x7f05001c;
-        public static final int lv_job=0x7f050027;
+        public static final int left_listView=0x7f050032;
+        public static final int linear=0x7f05002c;
+        public static final int linearLayout1=0x7f050031;
+        public static final int linear_bottom=0x7f050033;
+        public static final int linearlayout=0x7f050034;
+        public static final int lv_acontent=0x7f050006;
+        public static final int lv_activity=0x7f050009;
+        public static final int lv_friend=0x7f05001e;
+        public static final int lv_job=0x7f050029;
         public static final int margin=0x7f050002;
-        public static final int pager=0x7f050015;
-        public static final int pb_tail=0x7f050043;
-        public static final int popup_button=0x7f050005;
-        public static final int post_pager=0x7f050039;
-        public static final int ptr_id_header=0x7f05003a;
-        public static final int ptr_id_image=0x7f05003b;
-        public static final int ptr_id_last_updated=0x7f05003f;
-        public static final int ptr_id_spinner=0x7f05003c;
-        public static final int ptr_id_text=0x7f05003e;
-        public static final int ptr_id_textwrapper=0x7f05003d;
-        public static final int ptr_tail=0x7f050040;
-        public static final int relativeLayout1=0x7f05002d;
+        public static final int pager=0x7f050017;
+        public static final int pb_tail=0x7f050045;
+        public static final int popup_button=0x7f050007;
+        public static final int post_pager=0x7f05003b;
+        public static final int ptr_id_header=0x7f05003c;
+        public static final int ptr_id_image=0x7f05003d;
+        public static final int ptr_id_last_updated=0x7f050041;
+        public static final int ptr_id_spinner=0x7f05003e;
+        public static final int ptr_id_text=0x7f050040;
+        public static final int ptr_id_textwrapper=0x7f05003f;
+        public static final int ptr_tail=0x7f050042;
+        public static final int relativeLayout1=0x7f05002f;
         public static final int right=0x7f050001;
         public static final int selected_view=0x7f050004;
-        public static final int slidingmenumain=0x7f050044;
-        public static final int splash_layout=0x7f05001b;
-        public static final int tab_menu=0x7f050017;
-        public static final int title1=0x7f050018;
-        public static final int title2=0x7f050019;
-        public static final int title3=0x7f05001a;
-        public static final int titlelayout=0x7f050016;
-        public static final int tv_item_name=0x7f050034;
-        public static final int tv_tail=0x7f050042;
-        public static final int webview=0x7f050035;
-        public static final int webview_bottom=0x7f050036;
-        public static final int webview_edit=0x7f050038;
-        public static final int webview_submit=0x7f050037;
+        public static final int slidingmenumain=0x7f050046;
+        public static final int splash_layout=0x7f05001d;
+        public static final int tab_menu=0x7f050019;
+        public static final int title1=0x7f05001a;
+        public static final int title2=0x7f05001b;
+        public static final int title3=0x7f05001c;
+        public static final int titlelayout=0x7f050018;
+        public static final int tv_acontent_item=0x7f050005;
+        public static final int tv_item_name=0x7f050036;
+        public static final int tv_tail=0x7f050044;
+        public static final int webview=0x7f050037;
+        public static final int webview_bottom=0x7f050038;
+        public static final int webview_edit=0x7f05003a;
+        public static final int webview_submit=0x7f050039;
     }
     public static final class layout {
-        public static final int actionbar_popup=0x7f030000;
-        public static final int activity_fragment=0x7f030001;
-        public static final int activity_listview_item=0x7f030002;
-        public static final int activity_main=0x7f030003;
-        public static final int activity_splash=0x7f030004;
-        public static final int friend_fragment=0x7f030005;
-        public static final int friend_listview_item=0x7f030006;
-        public static final int head=0x7f030007;
-        public static final int job_fragment=0x7f030008;
-        public static final int job_listview_item=0x7f030009;
-        public static final int left=0x7f03000a;
-        public static final int left_listview_item=0x7f03000b;
-        public static final int post_comment=0x7f03000c;
-        public static final int post_content=0x7f03000d;
-        public static final int postcontent=0x7f03000e;
-        public static final int ptr_header=0x7f03000f;
-        public static final int ptr_tail=0x7f030010;
-        public static final int slidingmenumain=0x7f030011;
+        public static final int acontent_listview_item=0x7f030000;
+        public static final int acontentactivity=0x7f030001;
+        public static final int actionbar_popup=0x7f030002;
+        public static final int activity_fragment=0x7f030003;
+        public static final int activity_listview_item=0x7f030004;
+        public static final int activity_main=0x7f030005;
+        public static final int activity_splash=0x7f030006;
+        public static final int friend_fragment=0x7f030007;
+        public static final int friend_listview_item=0x7f030008;
+        public static final int head=0x7f030009;
+        public static final int job_fragment=0x7f03000a;
+        public static final int job_listview_item=0x7f03000b;
+        public static final int left=0x7f03000c;
+        public static final int left_listview_item=0x7f03000d;
+        public static final int post_comment=0x7f03000e;
+        public static final int post_content=0x7f03000f;
+        public static final int postcontent=0x7f030010;
+        public static final int ptr_header=0x7f030011;
+        public static final int ptr_tail=0x7f030012;
+        public static final int slidingmenumain=0x7f030013;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
@@ -825,7 +830,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:behindOffset
+          @attr name com.llb.activity:behindOffset
         */
         public static final int SlidingMenu_behindOffset = 3;
         /**
@@ -839,7 +844,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:behindScrollScale
+          @attr name com.llb.activity:behindScrollScale
         */
         public static final int SlidingMenu_behindScrollScale = 5;
         /**
@@ -855,7 +860,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:behindWidth
+          @attr name com.llb.activity:behindWidth
         */
         public static final int SlidingMenu_behindWidth = 4;
         /**
@@ -869,7 +874,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:fadeDegree
+          @attr name com.llb.activity:fadeDegree
         */
         public static final int SlidingMenu_fadeDegree = 11;
         /**
@@ -883,7 +888,7 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:fadeEnabled
+          @attr name com.llb.activity:fadeEnabled
         */
         public static final int SlidingMenu_fadeEnabled = 10;
         /**
@@ -900,7 +905,7 @@ containing a value of this type.
 <tr><td><code>left</code></td><td>0</td><td></td></tr>
 <tr><td><code>right</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name android:mode
+          @attr name com.llb.activity:mode
         */
         public static final int SlidingMenu_mode = 0;
         /**
@@ -910,7 +915,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:selectorDrawable
+          @attr name com.llb.activity:selectorDrawable
         */
         public static final int SlidingMenu_selectorDrawable = 13;
         /**
@@ -924,7 +929,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:selectorEnabled
+          @attr name com.llb.activity:selectorEnabled
         */
         public static final int SlidingMenu_selectorEnabled = 12;
         /**
@@ -934,7 +939,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:shadowDrawable
+          @attr name com.llb.activity:shadowDrawable
         */
         public static final int SlidingMenu_shadowDrawable = 8;
         /**
@@ -950,7 +955,7 @@ in (inches), mm (millimeters).
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name android:shadowWidth
+          @attr name com.llb.activity:shadowWidth
         */
         public static final int SlidingMenu_shadowWidth = 9;
         /**
@@ -967,7 +972,7 @@ containing a value of this type.
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name android:touchModeAbove
+          @attr name com.llb.activity:touchModeAbove
         */
         public static final int SlidingMenu_touchModeAbove = 6;
         /**
@@ -984,7 +989,7 @@ containing a value of this type.
 <tr><td><code>margin</code></td><td>0</td><td></td></tr>
 <tr><td><code>fullscreen</code></td><td>1</td><td></td></tr>
 </table>
-          @attr name android:touchModeBehind
+          @attr name com.llb.activity:touchModeBehind
         */
         public static final int SlidingMenu_touchModeBehind = 7;
         /**
@@ -994,7 +999,7 @@ containing a value of this type.
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:viewAbove
+          @attr name com.llb.activity:viewAbove
         */
         public static final int SlidingMenu_viewAbove = 1;
         /**
@@ -1004,7 +1009,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
 
           <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
-          @attr name android:viewBehind
+          @attr name com.llb.activity:viewBehind
         */
         public static final int SlidingMenu_viewBehind = 2;
     };

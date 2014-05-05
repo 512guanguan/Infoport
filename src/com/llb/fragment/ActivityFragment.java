@@ -1,7 +1,10 @@
 package com.llb.fragment;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
@@ -17,12 +20,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 
-import com.llb.activity.PostContentActivity;
+import com.llb.activity.AContentActivity;
 import com.llb.activity.R;
 import com.llb.adapter.ActivityMainAdapter;
-import com.llb.app.MyApp;
+import com.llb.app.MyHttpClient;
 import com.llb.entity.ActivityMainItemBean;
 import com.llb.net.LoadData;
+import com.llb.util.AppUtil;
 import com.llb.util.JsonDecodeUtil;
 import com.llb.util.PullToRefreshListView;
 import com.llb.util.PullToRefreshListView.OnRefreshListener;
@@ -33,7 +37,7 @@ import com.llb.util.PullToRefreshListView.OnRefreshListener;
 public class ActivityFragment extends Fragment implements OnItemClickListener,OnRefreshListener{
 	
 	private PullToRefreshListView listView=null;
-	private View view;//缓存页面
+	private View view=null;//缓存页面
 	private ArrayList<ActivityMainItemBean> list=null;//用来存储当前显示的信息
 	private ArrayList<ActivityMainItemBean> freshData=new ArrayList<ActivityMainItemBean>();//下拉刷新得到的新数据
 	private ArrayList<ActivityMainItemBean> oldData=new ArrayList<ActivityMainItemBean>();//上拉刷新得到的新数据
@@ -41,8 +45,9 @@ public class ActivityFragment extends Fragment implements OnItemClickListener,On
 	//网络请求
 	private LoadData loadData;
 	public static  Handler handler=null;
-	private String baseURL="http://192.168.1.109/collegepy/index.php";
-	private String url=baseURL+"/Home/PostList/postlist";//请求刷新的接口地址
+	private String baseURL="http://192.168.1.104/collegepy/index.php";
+	private String url=AppUtil.BASEURL_STRING+"/Home/PostList/postlist";//请求刷新的接口地址
+
 	private int pageSize=1;//每页显示条数
 	@Override
     public void onCreate(Bundle savedInstanceState)
@@ -108,10 +113,26 @@ public class ActivityFragment extends Fragment implements OnItemClickListener,On
 			long id) {
 		// TODO Auto-generated method stub
 		Log.i("zgr","点击一下,开始请求数据");
-		String url=baseURL+"/Home/Index/activity";
-		Intent intent=new Intent(this.getActivity(), PostContentActivity.class);
-		intent.putExtra("url",url);//把请求网址发过去
-		startActivity(intent);//先跳转页面
+		String url=AppUtil.BASEURL_STRING+"/Home/Index/activity";
+		
+		Intent intent=new Intent(this.getActivity(), AContentActivity.class);
+		intent.putExtra("postId", list.get(position).getpostId());//获取当前点击的帖子id
+		Bundle bundle=new Bundle();
+		bundle.putParcelable("item", list.get(position));//要求实现Parcelable接口
+		intent.putExtras(bundle);
+		startActivity(intent);
+		
+//		//下面这段是之前考虑的用webview来显示整个详情页的方法
+//		Intent intent=new Intent(this.getActivity(), PostContentActivity.class);
+//		//intent.putExtra("baseURL",baseURL);//把请求网址发过去
+//		//这里需要把整个item现有的内容传过去
+//		intent.putExtra("postId", list.get(position).getpostId());//获取当前点击的帖子id
+//		Bundle bundle=new Bundle();
+//		bundle.putParcelable("item", list.get(position));//要求实现Parcelable接口
+//		bundle.putSerializable("bean", list.get(position));//要求实现Serializable接口
+//		intent.putExtras(bundle);
+//		startActivity(intent);//先跳转页面
+		
 //		请求json数据示例
 //		try {
 //			String jsonString=loadData.getActivityPost("http://10.0.2.2/collegepy/index.php/Home/Index/activity");
@@ -130,10 +151,9 @@ public class ActivityFragment extends Fragment implements OnItemClickListener,On
 	public void onRefresh() {
 		//下拉刷新在这里请求网络
 		Log.i("llb", "顶部下拉请求网络");
-//		loadData.getPostList(url,1,100);//请求第一页数据
-		String page=list.get(0).getpostId();
+		String idNow=list.get(0).getpostId();//当前边界id
 		Log.i("zgr",list.get(0).toString());
-		ArrayList<BasicNameValuePair> params=getBasicNameValuePairs(url, page, 1);
+		ArrayList<BasicNameValuePair> params=getBasicNameValuePairs(url, idNow, 1);
 		new ActivityAsynctask().execute(params.get(0),params.get(1),params.get(2));
 	}
 	@Override
@@ -170,14 +190,34 @@ public class ActivityFragment extends Fragment implements OnItemClickListener,On
 		@Override
 		protected String doInBackground(BasicNameValuePair... params) {
 			//postByHttpClient(String url,NameValuePair...pairs)
-			String response=MyApp.getByHttpClient(params[0].getValue(),params[1],params[2]);//get方法请求数据
-			return response;
+			HttpEntity entity=null;
+			try {
+				entity = MyHttpClient.getByHttpClient(params[0].getValue(),params[1],params[2]);
+			} catch (ClientProtocolException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				return null;
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				return null;
+			}
+			//get方法请求数据
+			String result="";
+			try {
+				result = AppUtil.entityToJsonString(entity);
+			} catch (Exception e) {
+				e.printStackTrace();
+				Log.i("zgr","doInBackgroup wrong!");
+				return null;
+			}
+			return result;
 		}
 		@Override
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
 			int code=0;//返回的操作功能号
-			if(null!=result){
+			if(null!=result || result==""){
 				try {
 					JSONObject jsonObject=new JSONObject(result);//先把返回的数据转成一个json对象，方便解析
 					JsonDecodeUtil jsonDecodeUtil=new JsonDecodeUtil();
@@ -212,22 +252,22 @@ public class ActivityFragment extends Fragment implements OnItemClickListener,On
 	/**
 	 * 生成httpclient网络请求所需要的参数信息
 	 * @param url请求url
-	 * @param page 请求的页码
+	 * @param id 当前的边界item的id号
 	 * @param tag 请求标记： 1-下拉刷新  2-上拉刷新
 	 * @return ArrayList<BasicNameValuePair>
 	 */
-	private ArrayList<BasicNameValuePair> getBasicNameValuePairs(String url,String page,int tag){
+	private ArrayList<BasicNameValuePair> getBasicNameValuePairs(String url,String id,int tag){
 		ArrayList<BasicNameValuePair> pairs;
 		pairs=new ArrayList<BasicNameValuePair>();
 		switch (tag) {
 		case 1://下拉请求列表信息
 			pairs.add(new BasicNameValuePair("url", url));
-			pairs.add(new BasicNameValuePair("page", page));
+			pairs.add(new BasicNameValuePair("id", id));
 			pairs.add(new BasicNameValuePair("code", "100"));//id=100表示这个请求是请求Activity下拉列表数据
 			break;
 		case 2://上拉请求列表信息
 			pairs.add(new BasicNameValuePair("url", url));
-			pairs.add(new BasicNameValuePair("page", page));
+			pairs.add(new BasicNameValuePair("id", id));
 			pairs.add(new BasicNameValuePair("code", "001"));//id=001表示这个请求是请求Activity上拉刷新列表数据
 			break;
 		}

@@ -25,7 +25,8 @@
 			android:layout_centerVertical="true"
 			android:layout_toRightOf="@+id/iv_left"
 			android:text="@string/app_name"
-			android:textSize="23dp" />
+			android:textSize="23dp"
+			android:textStyle="bold" />
 
 		<ImageButton
 			android:id="@+id/action_add"
@@ -33,6 +34,7 @@
 			android:layout_height="wrap_content"
 			android:layout_centerVertical="true"
 			android:layout_toLeftOf="@+id/action_list"
+			android:background="#00ffffff"
 			android:src="@drawable/actionbar_edit" />
 
 		<ImageButton
@@ -41,6 +43,9 @@
 			android:layout_height="wrap_content"
 			android:layout_alignParentRight="true"
 			android:layout_centerVertical="true"
+			android:layout_marginLeft="15dp"
+			android:layout_marginRight="5dp"
+			android:background="#00ffffff"
 			android:src="@drawable/actionbar_list" />
 	</RelativeLayout>
 

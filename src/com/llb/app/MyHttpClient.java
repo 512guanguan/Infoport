@@ -1,8 +1,6 @@
 package com.llb.app;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +30,9 @@ import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
-import android.app.Application;
 import android.util.Log;
 
-public class MyApp extends Application{
+public class MyHttpClient{
 	private static HttpClient httpClient=null;//整个App共享这一个
 //	@Override
 //	public void onCreate() {//在Activity Service等创建之前就执行了
@@ -56,13 +53,13 @@ public class MyApp extends Application{
 		HttpProtocolParams.setUserAgent(params,"Mozilla/5.0 (Linux;U;Android 2.2.1;en-us;Nexus One Build/FRG83)"+
 		" AppleWebKit/533.1(KHTML, like Gecko) Version/4.0 Mobile Safari/533.1" );  
 		 
-		ConnManagerParams.setTimeout(params, 1000);//从连接池中取连接的超时时间
-		int connectionTimeOut = 3000;//连接超时时间
+		ConnManagerParams.setTimeout(params, 2000);//从连接池中取连接的超时时间
+		int connectionTimeOut = 4000;//连接超时时间
 //		if (!HttpUtils.isWifiDataEnable(context)) {
 //			connectionTimeOut = 10000;
 //		}
 		HttpConnectionParams.setConnectionTimeout(params, connectionTimeOut);
-		HttpConnectionParams.setSoTimeout(params, 4000);//设置Socket请求超时
+		HttpConnectionParams.setSoTimeout(params, 5000);//设置Socket请求超时
 		
 		SchemeRegistry sRegistry=new SchemeRegistry();//设置HttpClient支持HTTP和HTTPS两种模式
 		sRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
@@ -145,9 +142,9 @@ public class MyApp extends Application{
 	 * 通过get方式请求网络数据
 	 * @param url 请求地址
 	 * @param pairs 请求需要的各个参数
-	 * @return String 请求结果数据
+	 * @return HttpEntity 请求结果数据
 	 */
-	public static String getByHttpClient(String url,NameValuePair...pairs){
+	public static HttpEntity getByHttpClient(String url,NameValuePair...pairs)throws IOException,ClientProtocolException{
 		StringBuilder sBuilder=new StringBuilder();
 		sBuilder.append(url);
 		if(null!=pairs && pairs.length>0){
@@ -162,35 +159,27 @@ public class MyApp extends Application{
 		String path=sBuilder.toString();
 		Log.i("llb",path);
 		HttpGet getRequest=new HttpGet(path);
-		try {//getHttpClient() new DefaultHttpClient()
+//		try {//getHttpClient() new DefaultHttpClient()
 			HttpResponse response=getHttpClient().execute(getRequest);
 			if(response.getStatusLine().getStatusCode()!=HttpStatus.SC_OK){//检查状态码
 				throw new RuntimeException("数据请求失败");
 			}
 			HttpEntity resEntity=response.getEntity();//获得传回来的信息
-			
-			sBuilder=null;
-			sBuilder=new StringBuilder();//干脆重新声明一个变量
-//			sBuilder.delete(0, sBuilder.length());//清空之前的变量
-			
-			BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(resEntity.getContent()));
-			String s=null;
-			while((s=bufferedReader.readLine())!=null){
-				sBuilder.append(s);//逐行读取数据
-				s=null;//清空
-			}
-			
-			Log.i("zgr","resEntity="+sBuilder.toString());
-//			return (null==resEntity)? null :resEntity.toString();//返回数据
-			return sBuilder.toString();
-		} catch (ClientProtocolException e) {
-			e.printStackTrace();
-			Log.i("zgr","客户端协议错误");
-			return null;
-		} catch (IOException e) {
-			e.printStackTrace();
-			Log.i("zgr","io错误");
-			return null;
-		}
+			return resEntity;
+//			sBuilder=null;
+//			sBuilder=new StringBuilder();//干脆重新声明一个变量
+////			sBuilder.delete(0, sBuilder.length());//清空之前的变量
+//			
+//			BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(resEntity.getContent()));
+//			String s=null;
+//			while((s=bufferedReader.readLine())!=null){
+//				sBuilder.append(s);//逐行读取数据
+//				s=null;//清空
+//			}
+//			
+//			Log.i("zgr","resEntity="+sBuilder.toString());
+////			return (null==resEntity)? null :resEntity.toString();//返回数据
+//			return sBuilder.toString();
+//		}
 	}
 }

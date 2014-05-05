@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:background="@drawable/activity_item_selector"
+	android:background="#ffffff"
 	android:orientation="vertical" >
+
+	<!-- android:background="@drawable/activity_item_selector" -->
 
 	<TextView
 		android:id="@+id/activity_item_activityname"
@@ -18,7 +20,7 @@
 		android:paddingRight="6sp"
 		android:singleLine="true"
 		android:text="活动标题阿斯蒂芬阿法斯蒂阿斯蒂芬阿法第三方阿凡达阿道夫"
-		android:textSize="23sp"
+		android:textSize="18sp"
 		android:textStyle="bold" />
 
 	<LinearLayout
@@ -33,7 +35,7 @@
 			android:paddingLeft="3dp"
 			android:paddingRight="3dp"
 			android:text="时间:"
-			android:textSize="17sp"
+			android:textSize="16sp"
 			android:textStyle="bold" />
 
 		<TextView
@@ -44,7 +46,7 @@
 			android:paddingLeft="3dp"
 			android:paddingRight="3dp"
 			android:text="activity_time"
-			android:textSize="17sp" />
+			android:textSize="15sp" />
 	</LinearLayout>
 
 	<LinearLayout
@@ -59,7 +61,7 @@
 			android:paddingLeft="3dp"
 			android:paddingRight="3dp"
 			android:text="地点:"
-			android:textSize="17sp"
+			android:textSize="16sp"
 			android:textStyle="bold" />
 
 		<TextView
@@ -70,7 +72,7 @@
 			android:paddingLeft="3dp"
 			android:paddingRight="3dp"
 			android:text="activity_address"
-			android:textSize="17sp" />
+			android:textSize="15sp" />
 	</LinearLayout>
 
 	<RelativeLayout
@@ -103,14 +105,15 @@
 				android:gravity="center_vertical"
 				android:maxLines="1"
 				android:text="activity_authorname"
-				android:textSize="17sp" />
+				android:textSize="14sp" />
 
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
+				android:layout_marginLeft="20dp"
 				android:gravity="center_vertical"
 				android:text="发布于"
-				android:textSize="19sp" />
+				android:textSize="14sp" />
 
 			<TextView
 				android:id="@+id/activity_item_authortime"
@@ -119,15 +122,8 @@
 				android:gravity="center_vertical"
 				android:maxLines="1"
 				android:text="activity_authortime"
-				android:textSize="17sp" />
+				android:textSize="14sp" />
 		</LinearLayout>
-
-		<ImageView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_alignParentRight="true"
-			android:gravity="center_vertical"
-			android:src="@drawable/job_item_go" />
 	</RelativeLayout>
 
 </LinearLayout>

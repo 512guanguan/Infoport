@@ -569,12 +569,30 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
  */
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
+		Log.i("llb", "onScrollStateChanged");
 		if(getLastVisiblePosition()==this.getCount()-1&&scrollState==OnScrollListener.SCROLL_STATE_IDLE){
 		}
+		//下面这段解决了如果底部刷新没有新数据了，重复上拉发不出onLoadMore()操作导致down掉的bug
+		if(getLastVisiblePosition()==this.getCount()-1&&state2==State.REFRESHING&&location==1){
+			location=1;//表示这是底部上拉刷新
+			tailContainer.setVisibility(View.VISIBLE);//底部可见了
+			if(state2==State.REFRESHING){
+				state2=State.PULL_TO_REFRESH;
+				Log.i("llb","onScroll开始刷新");
+				location=1;
+				postDelayed(new Runnable(){//包装成一个Handler发送的Message放到了UI消息队列里面，其实也是在UI线程里面执行
+	                @Override
+	                public void run(){
+	                	onRefreshListener.onLoadMore();
+	                }
+	            }, BOUNCE_ANIMATION_DELAY);
+			}
+		}
+		
 	}
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,int visibleItemCount, int totalItemCount) {//第一个可见的索引（0） 可见item数目   总item数目
-	//	Log.i("llb","onScroll:"+firstVisibleItem+" "+visibleItemCount+" "+totalItemCount+" "+getLastVisiblePosition());
+		Log.i("llb","onScroll:"+firstVisibleItem+" "+visibleItemCount+" "+totalItemCount+" "+getLastVisiblePosition());
 		if(getLastVisiblePosition()>totalItemCount-2&&totalItemCount>visibleItemCount){//快到底部了&&至少有一屏
 			location=1;//表示这是底部上拉刷新
 			tailContainer.setVisibility(View.VISIBLE);//把整个底部隐藏了
